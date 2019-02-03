@@ -18,6 +18,12 @@ try:
 
 
 	a= soup.find_all(attrs = attr)
+	#find_all takes following arguements
+	#name
+	#attrs
+	#recursive
+	#string
+	#**kwarfs
 	i = 1
 
 	b= input ("Enter the initials for countries (press Enter to list all countries) :  " ).upper()
