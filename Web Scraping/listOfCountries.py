@@ -4,22 +4,32 @@ from bs4 import BeautifulSoup
 import time
 import re
 
+
 ua = UserAgent()
 header = { 'user-agent' : ua.chrome }
 
+try:
+	url = requests.get("https://www.britannica.com/topic/list-of-countries-1993160", headers=header)
 
-url = requests.get("https://www.britannica.com/topic/list-of-countries-1993160", headers=header)
+	soup = BeautifulSoup(url.text, 'lxml')
 
-soup = BeautifulSoup(url.text, 'lxml')
-
-attr = { 'class' : 'md-crosslink'}
+	attr = { 'class' : 'md-crosslink'}
 
 
 
-a= soup.find_all(attrs = attr)
-i = 0
+	a= soup.find_all(attrs = attr)
+	i = 1
 
-print("Following is the list of all the countries in the world")
-for items in a :
-	print( str(i) + ".  " + items.text + "\n")
-	i += 1
+	b= input ("Enter the initials for countries (press Enter to list all countries) :  " ).upper()
+	regex= re.compile("^" + b) 
+	for items in a :
+		country = (items.find_all( string = regex))
+		if ( country != [] ):
+			print( str(i) + ".  " + country[0] + "\n")
+			i += 1
+			if (i % 10 == 0) :
+				time.sleep(1)
+
+
+except:
+	print("cant fetch data, inform author")
