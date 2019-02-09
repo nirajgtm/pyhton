@@ -24,6 +24,8 @@ try:
 	#recursive
 	#string
 	#**kwarfs
+
+	# we can also use find function which returns the first object it finds
 	i = 1
 
 	b= input ("Enter the initials for countries (press Enter to list all countries) :  " ).upper()
